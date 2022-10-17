@@ -1,9 +1,11 @@
 import React from "react";
-import { Dropdown, Input, Layout, Menu, Typography } from "antd";
+import { Button, Dropdown, Input, Layout, Menu, Typography } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import logo from "../../assets/logo.svg";
 import styles from "./Header.module.css";
+import { useNavigate } from "react-router-dom";
 export const Header: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <div className={styles["app-header"]}>
             {/* top-header */}
@@ -22,17 +24,25 @@ export const Header: React.FC = () => {
                     >
                         语言
                     </Dropdown.Button>
+                    <Button.Group className={styles["button-group"]}>
+                        <Button onClick={() => navigate(`/register`)}>
+                            注册
+                        </Button>
+                        <Button onClick={() => navigate(`/login`)}>登陆</Button>
+                    </Button.Group>
                 </div>
             </div>
             <Layout.Header className={styles["main-header"]}>
-                <img src={logo} alt="" className={styles["App-logo"]} />
-                <Typography.Title level={3} className={styles.title}>
-                    React 旅游网
-                </Typography.Title>
-                <Input.Search
-                    className={styles["search-input"]}
-                    placeholder={"请输入旅游目的地、主题、或关键字"}
-                />
+                <span onClick={()=>navigate('/')}>
+                    <img src={logo} alt="" className={styles["App-logo"]} />
+                    <Typography.Title level={3} className={styles.title}>
+                        React 旅游网
+                    </Typography.Title>
+                    <Input.Search
+                        className={styles["search-input"]}
+                        placeholder={"请输入旅游目的地、主题、或关键字"}
+                    />
+                </span>
             </Layout.Header>
             <Menu mode={"horizontal"} className={styles["main-menu"]}>
                 <Menu.Item key={1}>旅游首页</Menu.Item>
