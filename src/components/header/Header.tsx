@@ -1,11 +1,21 @@
 import React from "react";
+// import { useSelector } from 'react-redux';
 import { Button, Dropdown, Input, Layout, Menu, Typography } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import logo from "../../assets/logo.svg";
 import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
+
+//使用函数组件
+// import {RootState} from '../../redux/store'
+import { useSelector } from '../../redux/hooks';
 export const Header: React.FC = () => {
     const navigate = useNavigate();
+    //最好不要将store与组件绑定在一起,不利于组件的复用
+    // const language = useSelector((state:RootState)=>state.language)
+
+    const language = useSelector((state)=>state.language)
+
     return (
         <div className={styles["app-header"]}>
             {/* top-header */}
