@@ -3,6 +3,7 @@ import {
     ADD_LANGUAGE,
     LanguageActionTypes,
 } from "./languageActions";
+import i18n from "i18next";
 interface LanuageState {
     language: "en" | "zh";
     languageList: { name: string; code: string }[];
@@ -18,6 +19,7 @@ const defaultState: LanuageState = {
 export default (state = defaultState, action: LanguageActionTypes) => {
     switch (action.type) {
         case CHANGE_LANGUAGE:
+            i18n.changeLanguage(action.payload); // 这样处理是不标准的，有副作用
             return { ...state, language: action.payload };
             break;
         case ADD_LANGUAGE:
